@@ -29,18 +29,15 @@ namespace Native {
 	}
 
 	// ------------------------------------------------------------------------
-	M_EXPORT Bytes virtual_alloc(size_t size, int prot)
+	M_EXPORT void* virtual_alloc(size_t size, int prot)
 	{
-		Byte* ptr = (Byte*)VirtualAlloc(nullptr, size, MEM_COMMIT, mprotect_flags(prot));
-		Bytes memory{ ptr, ptr + size };
-
-		return Data::align(memory, Native::page_size());
+		return VirtualAlloc(nullptr, size, MEM_COMMIT, mprotect_flags(prot));
 	}
 
 	// ------------------------------------------------------------------------
-	M_EXPORT bool virtual_free(Bytes bytes)
+	M_EXPORT bool virtual_free(void* ptr, size_t size)
 	{
-		return VirtualFree(bytes.begin, 0, MEM_RELEASE);
+		return VirtualFree(ptr, 0, MEM_RELEASE);
 	}
 
 } // namespace Native

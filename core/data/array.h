@@ -40,6 +40,6 @@ namespace Data {
 } // namespace Data
 
 
-#include "data/hpp/array.hpp"
+#include "core/data/hpp/array.hpp"
 
 #endif // DATA_ARRAY_H

@@ -5,6 +5,7 @@
 #include "native/crash.h"
 
 #define M_COND(X) Tools::AssertHandle{ #X, (X), M_CL }
+#define M_ASSERT(X) Tools::assert(M_COND(X))
 
 
 namespace Tools {

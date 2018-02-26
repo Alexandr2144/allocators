@@ -4,6 +4,8 @@
 
 #ifdef _WIN32
 #  define M_EXPORT __declspec(dllexport)
+#else
+#  define M_EXPORT
 #endif
 
 

@@ -5,6 +5,7 @@
 
 namespace Data {
 	int log2(int x);
+	int bitscount(int x);
 	
 	template <class T>
 	T min(T const& a, T const& b) { return a < b ? a : b; }

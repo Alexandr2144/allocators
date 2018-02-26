@@ -4,17 +4,10 @@
 
 #include <stddef.h>
 
-#include "data/bytes.h"
 #include "native/export.h"
 
 
 namespace Native {
-	using Data::Bytes;
-	using Data::Byte;
-
-
-	//M_EXPORT extern size_t page_size;
-
 	M_EXPORT size_t      page_size();
 
 	M_EXPORT void*       page_begin_ptr(void* ptr);
@@ -27,8 +20,8 @@ namespace Native {
 		PAGE_PROT_EXECUTABLE = 0x04,
 	};
 
-	M_EXPORT Bytes virtual_alloc(size_t size, int prot);
-	M_EXPORT bool virtual_free(Bytes bytes);
+	M_EXPORT void* virtual_alloc(size_t size, int prot);
+	M_EXPORT bool  virtual_free(void* ptr, size_t size);
 
 } // namespace Native
 

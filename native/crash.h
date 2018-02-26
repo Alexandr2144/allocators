@@ -3,7 +3,7 @@
 #define NATIVE_CRASH_H
 
 #include <stdint.h>
-#include "export.h"
+#include "native/export.h"
 
 #define M_CL Native::CL{ __FUNCTION__, __FILE__, __LINE__ }
 

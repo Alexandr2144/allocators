@@ -4,8 +4,8 @@
 
 #include <stddef.h>
 
-#include "data/linked_list.h"
-#include "data/bytes.h"
+#include "core/data/linked_list.h"
+#include "core/data/bytes.h"
 
 
 namespace Memory {
@@ -30,8 +30,10 @@ namespace Memory {
 		~SimpleLinearAllocator();
 	};
 
+   size_t memsize(SimpleLinearAllocator& alloc, Byte* ptr);
+
 	Bytes allocate(SimpleLinearAllocator& alloc, size_t size);
-	void  drop(SimpleLinearAllocator& alloc);
+	void drop(SimpleLinearAllocator& alloc);
 
 	void move(SimpleLinearAllocator& from, SimpleLinearAllocator& to);
 

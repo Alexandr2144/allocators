@@ -1,6 +1,5 @@
 #include "memory/simple_linear_allocator.h"
-
-#include "native/memory.h"
+#include "core/tools/memory.h"
 
 
 namespace Memory {
@@ -9,7 +8,7 @@ namespace Memory {
 	// ------------------------------------------------------------------------
 	Bytes hugeAlloc(SimpleLinearAllocator& alloc, size_t size)
 	{
-		Bytes memBlock = Native::virtual_alloc(size, Native::PAGE_PROT_READ | Native::PAGE_PROT_WRITE);
+		Bytes memBlock = Tools::virtual_alloc(size, Native::PAGE_PROT_READ | Native::PAGE_PROT_WRITE);
 		Block* block = (Block*)memBlock.begin;
 
 		if (Data::isEmpty(alloc.tail)) {
@@ -23,7 +22,7 @@ namespace Memory {
 	// ------------------------------------------------------------------------
 	void addFirstBlock(SimpleLinearAllocator& alloc)
 	{
-		Bytes memBlock = Native::virtual_alloc(Native::page_size(), Native::PAGE_PROT_READ | Native::PAGE_PROT_WRITE);
+		Bytes memBlock = Tools::virtual_alloc(Native::page_size(), Native::PAGE_PROT_READ | Native::PAGE_PROT_WRITE);
 		Block* block = (Block*)memBlock.begin;
 
 		alloc.end = memBlock.end;
@@ -35,7 +34,7 @@ namespace Memory {
 	// ------------------------------------------------------------------------
 	void addNewBlock(SimpleLinearAllocator& alloc)
 	{
-		Bytes memBlock = Native::virtual_alloc(Native::page_size(), Native::PAGE_PROT_READ | Native::PAGE_PROT_WRITE);
+		Bytes memBlock = Tools::virtual_alloc(Native::page_size(), Native::PAGE_PROT_READ | Native::PAGE_PROT_WRITE);
 		Block* block = (Block*)memBlock.begin;
 
 		alloc.end = memBlock.end;
@@ -81,7 +80,7 @@ namespace Memory {
 
 			void* block = Native::page_begin_ptr(toRemove);
 			Bytes memory = Data::toBytes(block, 0);
-			Native::virtual_free(memory);
+			Tools::virtual_free(memory);
 		}
 		
 		alloc = SimpleLinearAllocator();
